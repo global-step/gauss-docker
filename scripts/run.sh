@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo /usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true &
+/usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true &
 
-cd /home/Gauss
+cd ~/Gauss 
 bundle rake jobs:work & 
 bundle rails s
 
