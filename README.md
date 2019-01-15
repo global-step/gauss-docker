@@ -19,7 +19,7 @@ $ gem install bundler
 $ bundle install --path vendor/bundle
 $ bundle exec rake db:migrate 
 
-$ docker run -d -v <your path to Gauss>:/root/Gauss -p 3000:3000
+$ docker run -d -v <your path to Gauss>:/root/Gauss -p 3000:3000 gauss
 
 
 ## then only first time, you need to create db entry from seed
