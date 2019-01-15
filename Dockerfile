@@ -17,16 +17,16 @@ RUN apt-get install -y curl wget git
 # rbenv depend and install
 RUN apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev 
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
-RUN echo 'export RBENV_ROOT="/usr/local/rbenv"' >> $HOME/.bashrc
-RUN echo 'export PATH="${RBENV_ROOT}/bin:${PATH}"' >> $HOME/.bashrc
-RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bashrc
+RUN echo 'export RBENV_ROOT="/usr/local/rbenv"' >> $HOME/.bash_profile
+RUN echo 'export PATH="${RBENV_ROOT}/bin:${PATH}"' >> $HOME/.bash_profile
+RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bash_profile
 RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
 
 # ruby
-RUN . $HOME/.bashrc && CONFIGURE_OPTS="--disable-install-rdoc" rbenv install -v $RUBY_VERSION
-RUN . $HOME/.bashrc && rbenv rehash
-RUN . $HOME/.bashrc && rbenv global $RUBY_VERSION
-RUN . $HOME/.bashrc && gem install bundler
+RUN . $HOME/.bash_profile && CONFIGURE_OPTS="--disable-install-rdoc" rbenv install -v $RUBY_VERSION
+RUN . $HOME/.bash_profile && rbenv rehash
+RUN . $HOME/.bash_profile && rbenv global $RUBY_VERSION
+RUN . $HOME/.bash_profile && gem install bundler
 
 #------------------------------------------------------------------------------
 # depending packages   
@@ -57,9 +57,6 @@ RUN apt-get install -y libcurl3 libcurl3-gnutls # libcurl4-openssl-dev
 # Japanese font
 RUN  apt-get -y install language-pack-ja
 RUN  apt-get -y install libpq-dev
-# https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers
-RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
-
 
 #-------------------------------------------------------------------------------
 # Clean up APT when done.

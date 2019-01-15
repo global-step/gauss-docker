@@ -16,8 +16,9 @@ $ cd Gauss
 $ cat .ruby-version
 # install the ruby with rbenv or rvm
 $ gem install bundler
-$ bundle install
+$ bundle install --path vendor/bundle
 $ bundle exec rake db:migrate # only first time
 $ bundle exec rake db:seed # only first time
+
 $ docker run -d -v <your path to Gauss>:/root/Gauss -p 3000:3000
 ```
