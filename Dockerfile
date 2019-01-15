@@ -22,11 +22,18 @@ RUN echo 'export PATH="${RBENV_ROOT}/bin:${PATH}"' >> $HOME/.bash_profile
 RUN echo 'eval "$(rbenv init -)"' >> $HOME/.bash_profile
 RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
 
+# node
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g yarn
+
 # ruby
 RUN . $HOME/.bash_profile && CONFIGURE_OPTS="--disable-install-rdoc" rbenv install -v $RUBY_VERSION
 RUN . $HOME/.bash_profile && rbenv rehash
 RUN . $HOME/.bash_profile && rbenv global $RUBY_VERSION
 RUN . $HOME/.bash_profile && gem install bundler
+RUN . $HOME/.bash_profile && gem update --system 
+RUN . $HOME/.bash_profile && gem update bundler
 
 #------------------------------------------------------------------------------
 # depending packages   
@@ -62,10 +69,6 @@ RUN  apt-get -y install libpq-dev
 # Clean up APT when done.
 #-------------------------------------------------------------------------------
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN . $HOME/.bash_profile && gem update --system 
-RUN . $HOME/.bash_profile && gem update bundler
-RUN apt-get update && apt-get -y install nodejs
 
 # ------------------------------------------------------------------------------
 # Start supervisor, define default command.
