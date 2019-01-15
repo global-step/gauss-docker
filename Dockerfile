@@ -63,6 +63,10 @@ RUN  apt-get -y install libpq-dev
 #-------------------------------------------------------------------------------
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN . $HOME/.bash_profile && gem update --system 
+RUN . $HOME/.bash_profile && gem update bundler
+RUN apt-get update && apt-get -y install nodejs
+
 # ------------------------------------------------------------------------------
 # Start supervisor, define default command.
 ADD scripts/run.sh /

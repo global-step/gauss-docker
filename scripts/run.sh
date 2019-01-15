@@ -2,16 +2,12 @@
 
 . $HOME/.bash_profile
 
-/usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true &
-
-
 cd ~/Gauss 
-gem update --system
-gem update bundler
-gem uninstall -i /usr/local/lib/ruby/gems/1.2.0 did_you_mean # if needed
+gem uninstall did_you_mean
 bundle install --path vendor/bundle
 bundle exec rake db:migrate
 bundle exec rake jobs:work & 
-bundle exec rails s
+bundle exec rails s &
 
 
+/usr/share/elasticsearch/bin/elasticsearch -Des.insecure.allow.root=true 
