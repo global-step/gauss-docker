@@ -25,7 +25,7 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plu
 # node
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install -g yarn
+RUN npm install -g yarn@1.9.2
 
 # ruby
 RUN . $HOME/.bash_profile && CONFIGURE_OPTS="--disable-install-rdoc" rbenv install -v $RUBY_VERSION
