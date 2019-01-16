@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+     - "3000:3000"
+    volumes:
+     - ${HOME}/.ssh:/root/.ssh
+     - simplest-sync:/root/Gauss:nocopy # will be mounted on /var/www
+
+# that the important thing
+volumes:
+  simplest-sync:
+    external: true
