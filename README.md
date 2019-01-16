@@ -23,3 +23,7 @@ $ docker exec -it <container> /bin/bash
 # bundle exec rake db:seed 
 
 ```
+
+### Troubleshooting
+
+If some syncing issue happen, delete container and run `docker-sync clean` and start over.
