@@ -1,7 +1,7 @@
 ### Prerequisite
 
 * Install [Docker](https://docs.docker.com/install/)
-* Install [docker-sync](https://github.com/EugenMayer/docker-sync/wiki)
+* Install [docker-sync](https://github.com/EugenMayer/docker-sync/wiki) with rsync
 
 ### Run project 
 
@@ -9,10 +9,19 @@
 ```
 $ cd <your dev dir>
 $ git@github.com:global-step/Gauss.git
-
+$ cd ..
 $ git clone git@github.com:global-step/gauss-docker.git
+
+# Make sure your dev dir has both Gauss and gauss-docker
+
 $ cd gauss-docker
-$ docker-sync start
+
+# start containers
+$ docker-sync-stack start
+
+# or 
+
+$ docker-sync start 
 $ docker-compose up
 
 
@@ -24,6 +33,3 @@ $ docker exec -it <container> /bin/bash
 
 ```
 
-### Troubleshooting
-
-If some syncing issue happen, delete container and run `docker-sync clean` and start over.
