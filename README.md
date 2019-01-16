@@ -24,12 +24,13 @@ $ docker-sync-stack start
 $ docker-sync start 
 $ docker-compose up
 
+# rails console
+docker exec -it gauss-docker_web_1  bash -c '(source /root/.bash_profile && cd /root/Gauss/ && bundle exec rails c)'
 
 ## then only first time, you need to create db entry from seed
 $ docker exec -it <container> /bin/bash
 # cd ~/Gauss
 # . $HOME/.bash_profile
 # bundle exec rake db:seed 
-
 ```
 
